@@ -1,0 +1,19 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "powershell",
+    "isShellCommand": true,
+    "args": [
+        "if ( Test-Path ${fileDirname}/${fileBasenameNoExtension}.exe )",
+            "{ Remove-item ${fileDirname}/${fileBasenameNoExtension}.exe }",
+        ";",
+        "g++", "-Wall", "-std=c++11",
+            "-o", "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "${fileDirname}/${fileBasenameNoExtension}.cpp",
+        ";",
+        "if ( Test-Path ${fileDirname}/${fileBasenameNoExtension}.exe )",
+            "{ echo 'compile finished!'; ${fileDirname}/${fileBasenameNoExtension}.exe }"
+    ],
+    "showOutput": "always"
+}
